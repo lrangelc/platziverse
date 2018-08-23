@@ -11,14 +11,14 @@ const metric = {
   type: 'CPU',
   value: '18%',
   created_at: new Date(),
-  agent: agentFixtures.byId(1)
+  agent: agentFixtures.findById(1)
 };
 
 const metrics = [
   metric,
   extend(metric, { id: 2, value: '25%' }),
   extend(metric, { id: 3, value: '2%' }),
-  extend(metric, { id: 4, agent_id: 2, type: 'Memory', value: '33%', agent: agentFixtures.byId(2) })
+  extend(metric, { id: 4, agent_id: 2, type: 'Memory', value: '33%', agent: agentFixtures.findById(2) })
 ];
 
 function findByAgentUuid (uuid) {

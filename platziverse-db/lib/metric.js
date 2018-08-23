@@ -1,8 +1,10 @@
 'use strict';
 
+const sequelize = require('sequelize');
+
 module.exports = function setupMetric (MetricModel, AgentModel) {
   async function findByAgentUuid (uuid) {
-    return MetricModel.findAll({attributes: ['type'],
+    return MetricModel.findAll({attributes: ['type', [sequelize.fn('count', sequelize.col('metric.id')), 'Registros']],
       group: ['type'],
       include: [{
         attributes: [],
@@ -17,7 +19,7 @@ module.exports = function setupMetric (MetricModel, AgentModel) {
 
   async function findByTypeAgentUuid (type, uuid) {
     return MetricModel.findAll({
-      attributes: ['id', 'type', 'value', 'created_at'],
+      attributes: ['id', 'type', 'value', 'created_at', 'agent_id'],
       where: {
         type
       },

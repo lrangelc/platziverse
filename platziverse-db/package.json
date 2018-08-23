@@ -1,0 +1,38 @@
+{
+  "name": "platziverse-db",
+  "version": "1.0.0",
+  "description": "simple IoT platform - DB Module",
+  "main": "index.js",
+  "scripts": {
+    "setup": "SET DEBUG=platziverse:* && node setup.js",
+    "lint": "semistandard --fix",
+    "test": "SET DEBUG=platziverse:* && nyc --reporter=lcov ava tests/ --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lrangelc/platziverse.git"
+  },
+  "author": "Luis Rangel <luisrangelc@gmail.com> (https://twitter.com/luis_rangel_c)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lrangelc/platziverse/issues"
+  },
+  "homepage": "https://github.com/lrangelc/platziverse#readme",
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "nyc": "^12.0.2",
+    "proxyquire": "^2.0.1",
+    "sinon": "^6.1.5",
+    "sqlite3": "^4.0.2",
+    "standard": "^11.0.1"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "debug": "^3.1.0",
+    "defaults": "^1.0.3",
+    "inquirer": "^6.1.0",
+    "pg": "^7.4.3",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.38.0"
+  }
+}

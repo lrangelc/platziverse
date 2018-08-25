@@ -1,8 +1,8 @@
 # platziverse-mqtt
 
-## 'agent/connected'
+## `agent/connected`
 
-''' js
+``` js
 {
     agent: {
         uuid, // auto generar
@@ -12,21 +12,21 @@
         pid // obtener del proceso
     }
 }
-'''
+```
 
-## 'agent/disconnected'
+## `agent/disconnected`
 
-''' js
+``` js
 {
     agent:{
         uuid
     }
 }
-'''
+```
 
-## 'agent/message'
+## `agent/message`
 
-''' js
+``` js
 {
     agent,
     metrics: [
@@ -37,4 +37,4 @@
     ],
     timestamp // generar cuando creamos el mensaje
 }
-''
+``

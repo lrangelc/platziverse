@@ -10,14 +10,18 @@ const prompt = inquirer.createPromptModule();
 async function setup () {
   // Automatización del Script de creación de la Database
   let flag = false;
-
+  console.log('process.argv');
+  console.log(process.argv);
   process.argv.forEach(e => {
-    if (e === '--yes') {
+    console.log('e');
+    console.log(e);
+    if (e === 'yes') {
       flag = true;
+      console.log('flag es true');
     }
   });
-console.log("VICTORIA");
-  if (!flag) {
+  console.log('VICTORIA');
+  if (flag) {
     // Pregunta en la consola
     const answer = await prompt([
       {
@@ -30,8 +34,10 @@ console.log("VICTORIA");
     // Si la respuesta es falsa (es negativa), no pasa nada
     // Si la respuesta es verdadera (es positia), re-crea la DB
     if (!answer.setup) {
-      return console.log('Nothing happended :)');
+      return console.log('Nothing happended A :)');
     }
+  } else {
+    return console.log('Nothing happended B :)');
   }
 
   const config = {
@@ -44,7 +50,7 @@ console.log("VICTORIA");
     logging: s => debug(s),
     setup: true
   };
-  
+
   console.log(config);
   await db(config).catch(handleFatalError);
 

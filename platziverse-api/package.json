@@ -29,6 +29,8 @@
   "dependencies": {
     "chalk": "^2.4.1",
     "debug": "^4.0.1",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "express-asyncify": "^1.0.0",
+    "platziverse-db": "file:../platziverse-db"
   }
 }

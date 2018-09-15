@@ -6,6 +6,7 @@ const setupMetricModel = require('./models/metric');
 const setupAgent = require('./lib/agent');
 const setupMetric = require('./lib/metric');
 const defaults = require('defaults');
+// const debug = require('debug')('platziverse:db')
 
 module.exports = async function (config) {
   config = defaults(config, {
@@ -18,8 +19,19 @@ module.exports = async function (config) {
     query: {
       raw: true
     },
-    setup: true
+    setup: false
   });
+
+  //  config = {
+  //   database: process.env.DB_NAME || 'platziverse',
+  //   username: process.env.DB_USER || 'platzi',
+  //   password: process.env.DB_PASS || 'platzi',
+  //   host: process.env.DB_HOST || 'localhost',
+  //   port: '5434',
+  //   dialect: 'postgres',
+  //   logging: s => debug(s),
+  //   setup: false
+  // };
 
   const sequelize = setupDatabase(config);
   const AgentModel = setupAgentModel(config);

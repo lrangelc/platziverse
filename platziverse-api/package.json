@@ -1,12 +1,12 @@
 {
-  "name": "platziverse-mqtt",
+  "name": "platziverse-api",
   "version": "1.0.0",
   "private": true,
-  "description": "A Simple IoT Platform -MQTT Server",
+  "description": "A Simple IoT Platform - API",
   "main": "server.js",
   "scripts": {
     "start": "NODE_ENV=production node server.js",
-    "start-dev": "SET DEBUG=platziverse:* && nodemon server.js",
+    "start-dev": "set DEBUG=platziverse:* & nodemon server.js",
     "lint": "semistandard --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,14 +21,12 @@
   },
   "homepage": "https://github.com/lrangelc/platziverse#readme",
   "devDependencies": {
-    "nodemon": "^1.18.3",
-    "standard": "^11.0.1"
+    "nodemon": "^1.18.4",
+    "semistandard": "^12.0.1"
   },
   "dependencies": {
     "chalk": "^2.4.1",
-    "debug": "^3.1.0",
-    "mosca": "^2.8.3",
-    "platziverse-db": "file:../platziverse-db",
-    "redis": "^2.8.0"
+    "debug": "^4.0.1",
+    "express": "^4.16.3"
   }
 }

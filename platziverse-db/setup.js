@@ -16,7 +16,7 @@ async function setup () {
       flag = true;
     }
   });
-
+console.log("VICTORIA");
   if (!flag) {
     // Pregunta en la consola
     const answer = await prompt([
@@ -44,6 +44,7 @@ async function setup () {
     logging: s => debug(s),
     setup: true
   };
+  
   console.log(config);
   await db(config).catch(handleFatalError);
 

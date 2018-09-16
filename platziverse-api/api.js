@@ -4,6 +4,7 @@ const debug = require('debug')('platziverse:api:routes');
 const express = require('express');
 const apiError = require('./apiError');
 const asyncify = require('express-asyncify');
+const auth = require('express-jwt');
 const db = require('platziverse-db');
 
 const config = require('./config');
@@ -26,13 +27,26 @@ api.use('*', async (req, res, next) => {
   next();
 });
 
-api.get('/agents', async (req, res, next) => {
+api.get('/agents', auth(config.auth), async (req, res, next) => {
   debug('A request has come to /agents');
+
+  const { user } = req;
+
+  if (!user || !user.username) {
+    return next(new Error('Not authorized'));
+  }
 
   let agents = [];
 
+  // console.log('user.empresa')
+  // console.log(user.empresa)
+
   try {
-    agents = await Agent.findConnected();
+    if (user.username === 'lrangel') {
+      agents = await Agent.findConnected();
+    } else {
+      agents = await Agent.findByUsername(user.username);
+    }
   } catch (e) {
     return next(e);
   }
@@ -40,7 +54,7 @@ api.get('/agents', async (req, res, next) => {
   res.status(200).send(agents);
 });
 
-api.get('/agent/:uuid', async (req, res, next) => {
+api.get('/agent/:uuid', auth(config.auth), async (req, res, next) => {
   const { uuid } = req.params;
   debug(`A request has come to /agent/${uuid}`);
 
@@ -60,7 +74,7 @@ api.get('/agent/:uuid', async (req, res, next) => {
   res.send(agent);
 });
 
-api.get('/metrics/:uuid', async (req, res, next) => {
+api.get('/metrics/:uuid', auth(config.auth), async (req, res, next) => {
   const {uuid} = req.params;
   debug(`A request has come to /metrics/${uuid}`);
 
@@ -78,7 +92,7 @@ api.get('/metrics/:uuid', async (req, res, next) => {
   res.send(metrics);
 });
 
-api.get('/metrics/:uuid/:type', async (req, res, next) => {
+api.get('/metrics/:uuid/:type', auth(config.auth), async (req, res, next) => {
   const {uuid, type} = req.params;
   debug(`A request has come to /metrics/${uuid}/${type}`);
 

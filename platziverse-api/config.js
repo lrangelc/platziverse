@@ -12,5 +12,8 @@ module.exports = {
     dialect: 'postgres',
     logging: s => debug(s),
     setup: false
+  },
+  auth: {
+    secret: process.env.SECRET || 'homero'
   }
 };

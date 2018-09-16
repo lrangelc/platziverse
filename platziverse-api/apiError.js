@@ -27,7 +27,7 @@ class MetricsNotFoundError extends Error {
       Error.captureStackTrace(this, MetricsNotFoundError);
     }
 
-    this.message = (type) ? `Metrics of Agent with UUID: ${givenUuid} and type: ${type} not found in DataBase` : `Agent with UUID: ${givenUuid} not Found in DataBase`;
+    this.message = (type) ? `Metrics of Agent with UUID: ${givenUuid} and type: ${type} not found in DataBase` : `Agent with UUID: ${givenUuid} not found in DataBase`;
   }
 }
 

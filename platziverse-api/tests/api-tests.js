@@ -32,7 +32,7 @@ test.beforeEach(async () => {
     Metric: MetricStub
   }));
 
-  token = await sign({ admin: true, username: 'lrangel' }, config.auth.secret);
+  token = await sign({ admin: true, username: 'lrangel', 'permissions': [ 'metrics:read' ] }, config.auth.secret);
 
   AgentStub.findConnected = sandbox.stub();
   AgentStub.findConnected.returns(Promise.resolve(agentFixtures.connected));

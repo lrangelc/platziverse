@@ -5,6 +5,7 @@ const express = require('express');
 const apiError = require('./apiError');
 const asyncify = require('express-asyncify');
 const auth = require('express-jwt');
+const guard = require('express-jwt-permissions')();
 const db = require('platziverse-db');
 
 const config = require('./config');
@@ -74,8 +75,8 @@ api.get('/agent/:uuid', auth(config.auth), async (req, res, next) => {
   res.send(agent);
 });
 
-api.get('/metrics/:uuid', auth(config.auth), async (req, res, next) => {
-  const {uuid} = req.params;
+api.get('/metrics/:uuid', auth(config.auth), guard.check(['metrics:read']), async (req, res, next) => {
+  const { uuid } = req.params;
   debug(`A request has come to /metrics/${uuid}`);
 
   let metrics = [];
@@ -93,7 +94,7 @@ api.get('/metrics/:uuid', auth(config.auth), async (req, res, next) => {
 });
 
 api.get('/metrics/:uuid/:type', auth(config.auth), async (req, res, next) => {
-  const {uuid, type} = req.params;
+  const { uuid, type } = req.params;
   debug(`A request has come to /metrics/${uuid}/${type}`);
 
   let metrics = [];
